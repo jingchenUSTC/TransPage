@@ -20,7 +20,7 @@ public class MainActivity extends Activity
 		scanview = (ScanView) findViewById(R.id.scanview);
 		List<String> items = new ArrayList<String>();
 		for (int i = 0; i < 8; i++)
-			items.add("µÚ " + (i + 1) + " Ò³");
+			items.add("ç¬¬ " + (i + 1) + " é¡µ");
 		adapter = new ScanViewAdapter(this, items);
 		scanview.setAdapter(adapter);
 	}

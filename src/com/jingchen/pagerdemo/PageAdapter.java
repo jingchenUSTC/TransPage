@@ -5,19 +5,19 @@ import android.view.View;
 public abstract class PageAdapter
 {
 	/**
-	 * @return Ò³Ãæview
+	 * @return é¡µé¢view
 	 */
 	public abstract View getView();
 
 	public abstract int getCount();
 
 	/**
-	 * ½«ÄÚÈİÌí¼Óµ½viewÖĞ
+	 * å°†å†…å®¹æ·»åŠ åˆ°viewä¸­
 	 * 
 	 * @param view
-	 *            °üº¬ÄÚÈİµÄview
+	 *            åŒ…å«å†…å®¹çš„view
 	 * @param position
-	 *            µÚpositionÒ³
+	 *            ç¬¬positioné¡µ
 	 */
 	public abstract void addContent(View view, int position);
 }

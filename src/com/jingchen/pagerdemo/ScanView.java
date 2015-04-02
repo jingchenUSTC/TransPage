@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
- * ¸ü¶àÏê½â¼û²©¿Íhttp://blog.csdn.net/zhongkejingwang/article/details/38728119
+ * æ›´å¤šè¯¦è§£è§åšå®¢http://blog.csdn.net/zhongkejingwang/article/details/38728119
  * 
  * @author chenjing
  * 
@@ -29,42 +29,42 @@ public class ScanView extends RelativeLayout
 {
 	public static final String TAG = "ScanView";
 	private boolean isInit = true;
-	// »¬¶¯µÄÊ±ºò´æÔÚÁ½Ò³¿É»¬¶¯£¬ÒªÅĞ¶ÏÊÇÄÄÒ»Ò³ÔÚ»¬¶¯
+	// æ»‘åŠ¨çš„æ—¶å€™å­˜åœ¨ä¸¤é¡µå¯æ»‘åŠ¨ï¼Œè¦åˆ¤æ–­æ˜¯å“ªä¸€é¡µåœ¨æ»‘åŠ¨
 	private boolean isPreMoving = true, isCurrMoving = true;
-	// µ±Ç°ÊÇµÚ¼¸Ò³
+	// å½“å‰æ˜¯ç¬¬å‡ é¡µ
 	private int index;
 	private float lastX;
-	// Ç°Ò»Ò³£¬µ±Ç°Ò³£¬ÏÂÒ»Ò³µÄ×ó±ßÎ»ÖÃ
+	// å‰ä¸€é¡µï¼Œå½“å‰é¡µï¼Œä¸‹ä¸€é¡µçš„å·¦è¾¹ä½ç½®
 	private int prePageLeft = 0, currPageLeft = 0, nextPageLeft = 0;
-	// ÈıÕÅÒ³Ãæ
+	// ä¸‰å¼ é¡µé¢
 	private View prePage, currPage, nextPage;
-	// Ò³Ãæ×´Ì¬
+	// é¡µé¢çŠ¶æ€
 	private static final int STATE_MOVE = 0;
 	private static final int STATE_STOP = 1;
-	// »¬¶¯µÄÒ³Ãæ£¬Ö»ÓĞÇ°Ò»Ò³ºÍµ±Ç°Ò³¿É»¬
+	// æ»‘åŠ¨çš„é¡µé¢ï¼Œåªæœ‰å‰ä¸€é¡µå’Œå½“å‰é¡µå¯æ»‘
 	private static final int PRE = 2;
 	private static final int CURR = 3;
 	private int state = STATE_STOP;
-	// ÕıÔÚ»¬¶¯µÄÒ³ÃæÓÒ±ßÎ»ÖÃ£¬ÓÃÓÚ»æÖÆÒõÓ°
+	// æ­£åœ¨æ»‘åŠ¨çš„é¡µé¢å³è¾¹ä½ç½®ï¼Œç”¨äºç»˜åˆ¶é˜´å½±
 	private float right;
-	// ÊÖÖ¸»¬¶¯µÄ¾àÀë
+	// æ‰‹æŒ‡æ»‘åŠ¨çš„è·ç¦»
 	private float moveLenght;
-	// Ò³Ãæ¿í¸ß
+	// é¡µé¢å®½é«˜
 	private int mWidth, mHeight;
-	// »ñÈ¡»¬¶¯ËÙ¶È
+	// è·å–æ»‘åŠ¨é€Ÿåº¦
 	private VelocityTracker vt;
-	// ·ÀÖ¹¶¶¶¯
+	// é˜²æ­¢æŠ–åŠ¨
 	private float speed_shake = 20;
-	// µ±Ç°»¬¶¯ËÙ¶È
+	// å½“å‰æ»‘åŠ¨é€Ÿåº¦
 	private float speed;
 	private Timer timer;
 	private MyTimerTask mTask;
-	// »¬¶¯¶¯»­µÄÒÆ¶¯ËÙ¶È
+	// æ»‘åŠ¨åŠ¨ç”»çš„ç§»åŠ¨é€Ÿåº¦
 	public static final int MOVE_SPEED = 10;
-	// Ò³ÃæÊÊÅäÆ÷
+	// é¡µé¢é€‚é…å™¨
 	private PageAdapter adapter;
 	/**
-	 * ¹ıÂË¶àµã´¥ÅöµÄ¿ØÖÆ±äÁ¿
+	 * è¿‡æ»¤å¤šç‚¹è§¦ç¢°çš„æ§åˆ¶å˜é‡
 	 */
 	private int mEvents;
 
@@ -90,7 +90,7 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * Ïò×ó»¬¡£×¢Òâ¿ÉÒÔ»¬¶¯µÄÒ³ÃæÖ»ÓĞµ±Ç°Ò³ºÍÇ°Ò»Ò³
+	 * å‘å·¦æ»‘ã€‚æ³¨æ„å¯ä»¥æ»‘åŠ¨çš„é¡µé¢åªæœ‰å½“å‰é¡µå’Œå‰ä¸€é¡µ
 	 * 
 	 * @param which
 	 */
@@ -114,7 +114,7 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * ÏòÓÒ»¬¡£×¢Òâ¿ÉÒÔ»¬¶¯µÄÒ³ÃæÖ»ÓĞµ±Ç°Ò³ºÍÇ°Ò»Ò³
+	 * å‘å³æ»‘ã€‚æ³¨æ„å¯ä»¥æ»‘åŠ¨çš„é¡µé¢åªæœ‰å½“å‰é¡µå’Œå‰ä¸€é¡µ
 	 * 
 	 * @param which
 	 */
@@ -138,16 +138,16 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * µ±Íù»Ø·­¹ıÒ»Ò³Ê±Ìí¼ÓÇ°Ò»Ò³ÔÚ×î×ó±ß
+	 * å½“å¾€å›ç¿»è¿‡ä¸€é¡µæ—¶æ·»åŠ å‰ä¸€é¡µåœ¨æœ€å·¦è¾¹
 	 */
 	private void addPrePage()
 	{
 		removeView(nextPage);
 		addView(nextPage, -1, new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT));
-		// ´ÓÊÊÅäÆ÷»ñÈ¡Ç°Ò»Ò³ÄÚÈİ
+		// ä»é€‚é…å™¨è·å–å‰ä¸€é¡µå†…å®¹
 		adapter.addContent(nextPage, index - 1);
-		// ½»»»Ë³Ğò
+		// äº¤æ¢é¡ºåº
 		View temp = nextPage;
 		nextPage = currPage;
 		currPage = prePage;
@@ -156,16 +156,16 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * µ±ÍùÇ°·­¹ıÒ»Ò³Ê±£¬Ìí¼ÓÒ»Ò³ÔÚ×îµ×ÏÂ
+	 * å½“å¾€å‰ç¿»è¿‡ä¸€é¡µæ—¶ï¼Œæ·»åŠ ä¸€é¡µåœ¨æœ€åº•ä¸‹
 	 */
 	private void addNextPage()
 	{
 		removeView(prePage);
 		addView(prePage, 0, new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT));
-		// ´ÓÊÊÅäÆ÷»ñÈ¡ºóÒ»Ò³ÄÚÈİ
+		// ä»é€‚é…å™¨è·å–åä¸€é¡µå†…å®¹
 		adapter.addContent(prePage, index + 1);
-		// ½»»»Ë³Ğò
+		// äº¤æ¢é¡ºåº
 		View temp = currPage;
 		currPage = nextPage;
 		nextPage = prePage;
@@ -181,34 +181,34 @@ public class ScanView extends RelativeLayout
 		{
 			if (state != STATE_MOVE)
 				return;
-			// ÒÆ¶¯Ò³Ãæ
-			// ·­»Ø£¬ÏÈÅĞ¶Ïµ±Ç°ÄÄÒ»Ò³´¦ÓÚÎ´·µ»Ø×´Ì¬
+			// ç§»åŠ¨é¡µé¢
+			// ç¿»å›ï¼Œå…ˆåˆ¤æ–­å½“å‰å“ªä¸€é¡µå¤„äºæœªè¿”å›çŠ¶æ€
 			if (prePageLeft > -mWidth && speed <= 0)
 			{
-				// Ç°Ò»Ò³´¦ÓÚÎ´·µ»Ø×´Ì¬
+				// å‰ä¸€é¡µå¤„äºæœªè¿”å›çŠ¶æ€
 				moveLeft(PRE);
 			} else if (currPageLeft < 0 && speed >= 0)
 			{
-				// µ±Ç°Ò³´¦ÓÚÎ´·µ»Ø×´Ì¬
+				// å½“å‰é¡µå¤„äºæœªè¿”å›çŠ¶æ€
 				moveRight(CURR);
 			} else if (speed < 0 && index < adapter.getCount())
 			{
-				// Ïò×ó·­£¬·­¶¯µÄÊÇµ±Ç°Ò³
+				// å‘å·¦ç¿»ï¼Œç¿»åŠ¨çš„æ˜¯å½“å‰é¡µ
 				moveLeft(CURR);
 				if (currPageLeft == (-mWidth))
 				{
 					index++;
-					// ·­¹ıÒ»Ò³£¬ÔÚµ×ÏÂÌí¼ÓÒ»Ò³£¬°Ñ×îÉÏ²ãÒ³ÃæÒÆ³ı
+					// ç¿»è¿‡ä¸€é¡µï¼Œåœ¨åº•ä¸‹æ·»åŠ ä¸€é¡µï¼ŒæŠŠæœ€ä¸Šå±‚é¡µé¢ç§»é™¤
 					addNextPage();
 				}
 			} else if (speed > 0 && index > 1)
 			{
-				// ÏòÓÒ·­£¬·­¶¯µÄÊÇÇ°Ò»Ò³
+				// å‘å³ç¿»ï¼Œç¿»åŠ¨çš„æ˜¯å‰ä¸€é¡µ
 				moveRight(PRE);
 				if (prePageLeft == 0)
 				{
 					index--;
-					// ·­»ØÒ»Ò³£¬Ìí¼ÓÒ»Ò³ÔÚ×îÉÏ²ã£¬Òş²ØÔÚ×î×ó±ß
+					// ç¿»å›ä¸€é¡µï¼Œæ·»åŠ ä¸€é¡µåœ¨æœ€ä¸Šå±‚ï¼Œéšè—åœ¨æœ€å·¦è¾¹
 					addPrePage();
 				}
 			}
@@ -242,7 +242,7 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * ÍË³ö¶¯»­·­Ò³
+	 * é€€å‡ºåŠ¨ç”»ç¿»é¡µ
 	 */
 	public void quitMove()
 	{
@@ -261,7 +261,7 @@ public class ScanView extends RelativeLayout
 	}
 
 	/**
-	 * ÊÍ·Å¶¯×÷£¬²»ÏŞÖÆÊÖ»¬¶¯·½Ïò
+	 * é‡Šæ”¾åŠ¨ä½œï¼Œä¸é™åˆ¶æ‰‹æ»‘åŠ¨æ–¹å‘
 	 */
 	private void releaseMoving()
 	{
@@ -298,7 +298,7 @@ public class ScanView extends RelativeLayout
 				mEvents = -1;
 				break;
 			case MotionEvent.ACTION_MOVE:
-				// È¡Ïû¶¯»­
+				// å–æ¶ˆåŠ¨ç”»
 				quitMove();
 				Log.d("index", "mEvents = " + mEvents + ", isPreMoving = "
 						+ isPreMoving + ", isCurrMoving = " + isCurrMoving);
@@ -313,19 +313,19 @@ public class ScanView extends RelativeLayout
 					isCurrMoving = false;
 					if (index == 1)
 					{
-						// µÚÒ»Ò³²»ÄÜÔÙÍùÓÒ·­£¬Ìø×ªµ½Ç°Ò»¸öactivity
+						// ç¬¬ä¸€é¡µä¸èƒ½å†å¾€å³ç¿»ï¼Œè·³è½¬åˆ°å‰ä¸€ä¸ªactivity
 						state = STATE_MOVE;
 						releaseMoving();
 					} else
 					{
-						// ·ÇµÚÒ»Ò³
+						// éç¬¬ä¸€é¡µ
 						prePageLeft += (int) moveLenght;
-						// ·ÀÖ¹»¬¹ı±ß½ç
+						// é˜²æ­¢æ»‘è¿‡è¾¹ç•Œ
 						if (prePageLeft > 0)
 							prePageLeft = 0;
 						else if (prePageLeft < -mWidth)
 						{
-							// ±ß½çÅĞ¶Ï£¬ÊÍ·Å¶¯×÷£¬·ÀÖ¹À´»Ø»¬¶¯µ¼ÖÂ»¬¶¯Ç°Ò»Ò³Ê±µ±Ç°Ò³ÎŞ·¨»¬¶¯
+							// è¾¹ç•Œåˆ¤æ–­ï¼Œé‡Šæ”¾åŠ¨ä½œï¼Œé˜²æ­¢æ¥å›æ»‘åŠ¨å¯¼è‡´æ»‘åŠ¨å‰ä¸€é¡µæ—¶å½“å‰é¡µæ— æ³•æ»‘åŠ¨
 							prePageLeft = -mWidth;
 							releaseMoving();
 						}
@@ -339,18 +339,18 @@ public class ScanView extends RelativeLayout
 					isCurrMoving = true;
 					if (index == adapter.getCount())
 					{
-						// ×îºóÒ»Ò³²»ÄÜÔÙÍù×ó·­
+						// æœ€åä¸€é¡µä¸èƒ½å†å¾€å·¦ç¿»
 						state = STATE_STOP;
 						releaseMoving();
 					} else
 					{
 						currPageLeft += (int) moveLenght;
-						// ·ÀÖ¹»¬¹ı±ß½ç
+						// é˜²æ­¢æ»‘è¿‡è¾¹ç•Œ
 						if (currPageLeft < -mWidth)
 							currPageLeft = -mWidth;
 						else if (currPageLeft > 0)
 						{
-							// ±ß½çÅĞ¶Ï£¬ÊÍ·Å¶¯×÷£¬·ÀÖ¹À´»Ø»¬¶¯µ¼ÖÂ»¬¶¯µ±Ç°Ò³ÊÇÇ°Ò»Ò³ÎŞ·¨»¬¶¯
+							// è¾¹ç•Œåˆ¤æ–­ï¼Œé‡Šæ”¾åŠ¨ä½œï¼Œé˜²æ­¢æ¥å›æ»‘åŠ¨å¯¼è‡´æ»‘åŠ¨å½“å‰é¡µæ˜¯å‰ä¸€é¡µæ— æ³•æ»‘åŠ¨
 							currPageLeft = 0;
 							releaseMoving();
 						}
@@ -386,7 +386,7 @@ public class ScanView extends RelativeLayout
 	}
 
 	/*
-	 * £¨·Ç Javadoc£© ÔÚÕâÀï»æÖÆ·­Ò³ÒõÓ°Ğ§¹û
+	 * ï¼ˆé Javadocï¼‰ åœ¨è¿™é‡Œç»˜åˆ¶ç¿»é¡µé˜´å½±æ•ˆæœ
 	 * 
 	 * @see android.view.ViewGroup#dispatchDraw(android.graphics.Canvas)
 	 */
@@ -414,7 +414,7 @@ public class ScanView extends RelativeLayout
 		mHeight = getMeasuredHeight();
 		if (isInit)
 		{
-			// ³õÊ¼×´Ì¬£¬Ò»Ò³·ÅÔÚ×ó±ßÒş²ØÆğÀ´£¬Á½Ò³µşÔÚÒ»¿é
+			// åˆå§‹çŠ¶æ€ï¼Œä¸€é¡µæ”¾åœ¨å·¦è¾¹éšè—èµ·æ¥ï¼Œä¸¤é¡µå åœ¨ä¸€å—
 			prePageLeft = -mWidth;
 			currPageLeft = 0;
 			nextPageLeft = 0;
